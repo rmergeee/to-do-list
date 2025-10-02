@@ -1,6 +1,6 @@
-import './style.css';
+import "./style.css";
 
-document.querySelector('#app').innerHTML = `
+document.querySelector("#app").innerHTML = `
   <article>
     <header>
       <h2>Webpack + Pico.css ready!</h2>
