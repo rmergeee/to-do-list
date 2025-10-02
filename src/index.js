@@ -1,4 +1,9 @@
 import "./style.css";
+import Task from "./core/Task";
+
+let task = new Task("do work", "simple desc", "02.10.2025");
+console.log(task);
+localStorage.setItem("task1", JSON.stringify(task));
 
 document.querySelector("#app").innerHTML = `
   <article>

@@ -5,8 +5,4 @@ export default class Task {
     this.deadline = deadline;
     this.status = true;
   }
-
-  changeStatus() {
-    this.status = this.status ? false : true;
-  }
 }
