@@ -25,6 +25,7 @@ module.exports = {
   devServer: {
     static: './dist',
     hot: true,
+    liveReload: true,
   },
   devtool: 'inline-source-map',  // карти коду для дебагу
 };
