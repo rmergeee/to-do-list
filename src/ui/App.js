@@ -14,9 +14,7 @@ export default class App {
             const taskOnPage = document.createElement("article");
             const h2 = document.createElement("h2");
             h2.textContent = tsk.title;
-            taskOnPage.append(
-                h2
-            )
+            taskOnPage.append(h2)
             document.querySelector(".content").append(taskOnPage);
         }
 
