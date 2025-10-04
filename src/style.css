@@ -17,3 +17,21 @@
     border-radius: 5px;
     padding: 1rem;
 }
+
+.task {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+
+    .taskHeader {
+        margin: 0;
+        padding: 0;
+    }
+
+    .taskDesc {
+        margin: 0;
+        padding: 0;
+    }
+
+}
