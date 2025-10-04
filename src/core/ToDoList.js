@@ -2,7 +2,13 @@ import Task from "./Task";
 
 export default class ToDoList {
   constructor() {
-    this.taskStorage = [];
+    this.taskStorage = [
+      // new Task(
+      //   "This is example",
+      //   "This task is example. Please complete me.",
+      //   "04.10.2025",
+      // ),
+    ];
   }
 
   addTask(title, description, deadline, project) {
