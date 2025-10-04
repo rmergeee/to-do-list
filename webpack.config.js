@@ -1,31 +1,31 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',       // точка входу
+  entry: "./src/index.js", // точка входу
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    clean: true,                 // очищає dist перед новою збіркою
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true, // очищає dist перед новою збіркою
   },
-  mode: 'development',           // для розробки
+  mode: "development", // для розробки
   module: {
     rules: [
       {
-        test: /\.css$/i,         // завантаження CSS
-        use: ['style-loader', 'css-loader'],
+        test: /\.css$/i, // завантаження CSS
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html', // шаблон HTML
+      template: "./src/index.html", // шаблон HTML
     }),
   ],
   devServer: {
-    static: './dist',
+    static: "./dist",
     hot: true,
     liveReload: true,
   },
-  devtool: 'inline-source-map',  // карти коду для дебагу
+  devtool: "inline-source-map", // карти коду для дебагу
 };
