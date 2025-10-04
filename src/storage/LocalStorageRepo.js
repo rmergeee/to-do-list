@@ -1,22 +1,39 @@
 import Repository from "./Repository";
 
 export default class LocalStorageRepo extends Repository {
-  constructor(objToDo, storageKey = "todolist") {
+  constructor(objToDo) {
     super();
     this.objToDo = objToDo;
-    this.storageKey = storageKey;
   }
 
-  getAll() {
-    this.objToDo.taskStorage = JSON.parse(
-      localStorage.getItem(this.storageKey),
-    );
+  getAllTasksToVirtualStorage() {
+    this.objToDo.taskStorage = []; // очистимо перед завантаженням
+
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      const item = localStorage.getItem(key);
+      try {
+        this.objToDo.taskStorage.push(JSON.parse(item));
+      } catch (e) {
+        console.error(`Помилка при парсингу ключа ${key}:`, e);
+      }
+    }
   }
 
-  addAll() {
-    localStorage.setItem(
-      this.storageKey,
-      JSON.stringify(this.objToDo.taskStorage),
-    );
+  addAllTask() {
+    this.objToDo.taskStorage.forEach((task) => {
+      localStorage.setItem(task.id, JSON.stringify(task));
+    });
+  }
+
+  getTaskById(id) {
+    return JSON.parse(localStorage.getItem(id));
+  }
+
+  deleteTaskById() {
+    throw new Error("Not implemented");
+  }
+  setTaskById(id, task) {
+    localStorage.setItem(id, JSON.stringify(task));
   }
 }

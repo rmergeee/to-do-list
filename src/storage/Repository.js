@@ -1,11 +1,17 @@
 export default class Repository {
-  getAll() {
+  getAllTasks() {
     throw new Error("Not implemented");
   }
-  //getById(id) { throw new Error("Not implemented"); }
-  addAll(ToDoList) {
+  getAllTasksToVirtualStorage() {
     throw new Error("Not implemented");
   }
-  //update(id, todo) { throw new Error("Not implemented"); }
-  //delete(id) { throw new Error("Not implemented"); }
+  getTaskById() {
+    throw new Error("Not implemented");
+  }
+  deleteTaskById() {
+    throw new Error("Not implemented");
+  }
+  setTaskById() {
+    throw new Error("Not implemented");
+  }
 }
