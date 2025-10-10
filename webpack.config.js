@@ -2,30 +2,40 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js", // точка входу
+  entry: "./src/index.js",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
-    clean: true, // очищає dist перед новою збіркою
+    clean: true,
+    assetModuleFilename: "assets/[hash][ext][query]", // щоб картинки потрапляли в /assets/
   },
-  mode: "development", // для розробки
+  mode: "development",
   module: {
     rules: [
       {
-        test: /\.css$/i, // завантаження CSS
+        test: /\.css$/i,
         use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp)$/i, // підтримка зображень
+        type: "asset/resource", // замінює file-loader
+      },
+      {
+        test: /\.html$/i, // щоб обробляти <img src="..."> в HTML
+        use: ["html-loader"],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html", // шаблон HTML
+      template: "./src/index.html",
     }),
   ],
   devServer: {
     static: "./dist",
     hot: true,
     liveReload: true,
+    open: true, // автоматично відкриє браузер
   },
-  devtool: "inline-source-map", // карти коду для дебагу
+  devtool: "inline-source-map",
 };
