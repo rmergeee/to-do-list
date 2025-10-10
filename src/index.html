@@ -1,23 +1,30 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Pico + Webpack</title>
-    </head>
-    <body>
-        <main class="container">
-            <h1>Hello, this is your To-Do List</h1>
-            <div id="app">
-                <nav class="navBar">
-                    <ul>
-                        <li><button>Create new task</button></li>
-                        <li><button>Add new project</button></li>
-                        <li>All Task</li>
-                        <li>Example Project</li>
-                    </ul>
-                </nav>
-                <section class="content" id="task-container"></section>
-            </div>
-        </main>
-    </body>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Pico + Webpack</title>
+</head>
+
+<body>
+    <main class=".container-fluid">
+        <nav class="nav-menu">
+            <h1>To-do List</h1>
+            <button class="createTask outline">Create task</button>
+            <ul class="menuList">
+                <li><a href="#"><img src="./img/hamburger-menu-svgrepo-com.svg" alt="Tasks">All tasks</a></li>
+                <li><a href="#"><img src="./img/todo-done-svgrepo-com.svg" alt="Completed tasks">Completed</a></li>
+                <li><a href="#"><img src="./img/todo-svgrepo-com.svg" alt="To do tasks">To do</a></li>
+            </ul>
+            <hr>
+            <button class="outline secondary">New project</button>
+            <ul class="projectList">
+                <li class="exampleProject project"><a href="#">Example Project</a></li>
+            </ul>
+        </nav>
+        <div class="line"></div>
+        <section class="content"></section>
+    </main>
+</body>
+
 </html>
