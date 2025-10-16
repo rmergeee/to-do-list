@@ -42,8 +42,27 @@ main {
     }
 }
 
-.line { 
+.line {
     background-color: #969ea6;
     width: 1px;
     flex: 0 0 1;
+}
+
+dialog {
+    form {
+        article {
+            footer {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                #comfirmBtn {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+.invalid {
+    border: 2px solid red;
 }

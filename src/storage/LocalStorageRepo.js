@@ -7,7 +7,7 @@ export default class LocalStorageRepo extends Repository {
   }
 
   getAllTasksToVirtualStorage() {
-    this.objToDo.taskStorage = []; // очистимо перед завантаженням
+    this.objToDo.taskStorage = [];
 
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);

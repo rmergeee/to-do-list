@@ -7,8 +7,55 @@ export default class App {
     this.storage = new LocalStorageRepo(this.todo);
   }
 
+  addEvent() {
+    const createBtn = document.getElementById("createBtn");
+    const modal = document.querySelector("dialog");
+    const closeModalWindow = document.getElementById("closeModal");
+    const createForm = document.querySelector("form");
+
+    createForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      let valid = true;
+      const formData = new FormData(createForm);
+
+      const fields = createForm.querySelectorAll("input, textarea, select");
+      fields.forEach((field) => {
+        if (!field.value) {
+          field.classList.add("invalid");
+          valid = false;
+        } else {
+          field.classList.remove("invalid");
+        }
+      });
+
+      if (valid) {
+        console.log("Форма валідна, можна сабмітити через JS");
+        this.todo.addTask(
+          formData.get("taskName"),
+          formData.get("taskDesc"),
+          formData.get("date"),
+          formData.get("taskProject"),
+        );
+        this.storage.addAllTask();
+        this.uploadTaskToPage();
+        createForm.reset();
+        closeModalWindow.click();
+      }
+    });
+
+    createBtn.addEventListener("click", () => {
+      modal.showModal();
+    });
+
+    closeModalWindow.addEventListener("click", () => {
+      modal.close();
+    });
+  }
+
   uploadTaskToPage() {
     const self = this;
+    this.storage.getAllTasksToVirtualStorage();
 
     this.todo.taskStorage.forEach((tsk) => {
       if (tsk.status === true) {
@@ -38,7 +85,6 @@ export default class App {
   }
 
   init() {
-    this.storage.getAllTasksToVirtualStorage();
-    this.uploadTaskToPage();
+    this.addEvent();
   }
 }
