@@ -12,6 +12,8 @@ export default class App {
     const modal = document.querySelector("dialog");
     const closeModalWindow = document.getElementById("closeModal");
     const createForm = document.querySelector("form");
+    const completedTasks = document.getElementById("completedTasks");
+    const todoTasks = document.getElementById("todoTasks");
 
     createForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -38,9 +40,10 @@ export default class App {
           formData.get("taskProject"),
         );
         this.storage.addAllTask();
-        this.uploadTaskToPage();
+        this.uploadTaskToPage(true);
         createForm.reset();
         closeModalWindow.click();
+        console.table(this.todo.taskStorage);
       }
     });
 
@@ -51,20 +54,34 @@ export default class App {
     closeModalWindow.addEventListener("click", () => {
       modal.close();
     });
+
+    completedTasks.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.uploadTaskToPage(false);
+    });
+
+    todoTasks.addEventListener("click", (e) => {
+      e.preventDefault();
+      this.uploadTaskToPage(true);
+    });
   }
 
-  uploadTaskToPage() {
+  uploadTaskToPage(status) {
+    document.getElementById("task-container").innerHTML = "";
+
     const self = this;
     this.storage.getAllTasksToVirtualStorage();
 
     this.todo.taskStorage.forEach((tsk) => {
-      if (tsk.status === true) {
+      if (tsk.status === status) {
         let taskOnPage = document.createElement("article");
-        taskOnPage.innerHTML = `<input type="checkbox" name="taskStatus" id="${tsk.id}">
-         <div class="taskTextContent">
-           <h3 class="taskHeader">${tsk.title}</h3>
-           <p class="taskDesc">${tsk.description}</p>
-         </div>`;
+        taskOnPage.innerHTML = `<input type="checkbox" name="taskStatus" id="${tsk.id}" ${tsk.status === false ? "checked" : ""}/>
+        <label>
+            <h3 class="taskHeader">${tsk.title}</h3>
+        </label>
+        <div class="taskTextContent">
+            <p class="taskDesc">${tsk.description}</p>
+        </div>`;
         taskOnPage.className = "task";
         document.getElementById("task-container").append(taskOnPage);
         document.getElementById(tsk.id).addEventListener("change", function () {
@@ -85,6 +102,7 @@ export default class App {
   }
 
   init() {
+    this.uploadTaskToPage(true);
     this.addEvent();
   }
 }
