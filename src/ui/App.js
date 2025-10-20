@@ -35,15 +35,14 @@ export default class App {
             });
 
             if (valid) {
-                console.log("Форма валідна, можна сабмітити через JS");
                 this.todo.addTask(
                     formData.get("taskName"),
                     formData.get("taskDesc"),
                     formData.get("date"),
                     formData.get("taskProject"),
                 );
-                this.storage.addAllTask();
-                this.uploadTaskToPage(true);
+                this.storage.saveTasks();
+                this.renderTasks(true);
                 createForm.reset();
                 closeModalWindow.click();
                 console.table(this.todo.taskStorage);
@@ -60,36 +59,35 @@ export default class App {
 
         completedTasks.addEventListener("click", (e) => {
             e.preventDefault();
-            this.uploadTaskToPage(false);
+            this.renderTasks(false);
         });
 
         todoTasks.addEventListener("click", (e) => {
             e.preventDefault();
-            this.uploadTaskToPage(true);
+            this.renderTasks(true);
         });
 
         allTasks.addEventListener("click", (e) => {
             e.preventDefault();
-            this.uploadTaskToPage(null);
+            this.renderTasks(null);
         });
     }
 
-    uploadTaskToPage(status) {
+    renderTasks(status) {
         document.getElementById("task-container").innerHTML = "";
-
         const self = this;
-        this.storage.getAllTasksToVirtualStorage();
+        this.storage.loadTasks();
 
         this.todo.taskStorage.forEach((tsk) => {
             if (tsk.status === status || status === null) {
                 let taskOnPage = document.createElement("article");
                 taskOnPage.innerHTML = `<input type="checkbox" name="taskStatus" id="${tsk.id}" ${tsk.status === false ? "checked" : ""}/>
-        <label>
-            <h3 class="taskHeader">${tsk.title}</h3>
-        </label>
-        <div class="taskTextContent">
-            <p class="taskDesc">${tsk.description}</p>
-        </div>`;
+                <label>
+                    <h3 class="taskHeader">${tsk.title}</h3>
+                </label>
+                <div class="taskTextContent">
+                    <p class="taskDesc">${tsk.description}</p>
+                </div>`;
                 taskOnPage.className = "task";
                 document.getElementById("task-container").append(taskOnPage);
                 document
@@ -98,15 +96,17 @@ export default class App {
                         if (this.checked) {
                             tsk.status = false;
                             console.log("Checkbox is checked!");
+                            self.storage.saveTasks();
                         } else {
                             tsk.status = true;
                             console.log("Checkbox is unchecked!");
+                            self.storage.saveTasks();
                         }
-                        if (tsk.status === false) {
-                            document
-                                .getElementById(tsk.id)
-                                .parentElement.remove();
-                        }
+                        // if (tsk.status === false) {
+                        //     document
+                        //         .getElementById(tsk.id)
+                        //         .parentElement.remove();
+                        // }
                         self.storage.setTaskById(tsk.id, tsk);
                     });
             }
@@ -114,7 +114,7 @@ export default class App {
     }
 
     init() {
-        this.uploadTaskToPage(true);
+        this.renderTasks(true);
         this.addEvent();
     }
 }

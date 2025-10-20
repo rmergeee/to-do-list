@@ -1,39 +1,33 @@
 import Repository from "./Repository";
 
 export default class LocalStorageRepo extends Repository {
-  constructor(objToDo) {
-    super();
-    this.objToDo = objToDo;
-  }
-
-  getAllTasksToVirtualStorage() {
-    this.objToDo.taskStorage = [];
-
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      const item = localStorage.getItem(key);
-      try {
-        this.objToDo.taskStorage.push(JSON.parse(item));
-      } catch (e) {
-        console.error(`Помилка при парсингу ключа ${key}:`, e);
-      }
+    constructor(objToDo) {
+        super();
+        this.objToDo = objToDo;
     }
-  }
 
-  addAllTask() {
-    this.objToDo.taskStorage.forEach((task) => {
-      localStorage.setItem(task.id, JSON.stringify(task));
-    });
-  }
+    loadTasks() {
+        if (JSON.parse(localStorage.getItem("allTasks")) === null) return;
+        this.objToDo.taskStorage = JSON.parse(localStorage.getItem("allTasks"));
+    }
 
-  getTaskById(id) {
-    return JSON.parse(localStorage.getItem(id));
-  }
+    saveTasks() {
+        localStorage.setItem(
+            "allTasks",
+            JSON.stringify(this.objToDo.taskStorage),
+        );
+    }
 
-  deleteTaskById() {
-    throw new Error("Not implemented");
-  }
-  setTaskById(id, task) {
-    localStorage.setItem(id, JSON.stringify(task));
-  }
+    getTaskById() {
+        return this.objToDo.taskStorage.find((t) => {
+            t.id === id;
+        });
+    }
+
+    setTaskById(id, tsk) {
+        const taskIndex = this.objToDo.taskStorage.findIndex((t) => {
+            t.id === id;
+        });
+        this.objToDo.taskStorage[taskIndex] = tsk;
+    }
 }
