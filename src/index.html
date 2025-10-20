@@ -40,18 +40,16 @@
                     </li>
                 </ul>
                 <hr />
-                <button class="outline secondary">New project</button>
-                <ul class="projectList">
-                    <li class="exampleProject project">
-                        <a href="#">Example Project</a>
-                    </li>
-                </ul>
+                <button class="outline secondary" id="createProject">
+                    New project
+                </button>
+                <ul id="projectList"></ul>
             </nav>
             <div class="line"></div>
             <section class="content" id="task-container"></section>
         </main>
-        <dialog>
-            <form>
+        <dialog class="createTaskModal">
+            <form id="tsk">
                 <article>
                     <h2>Create Task</h2>
                     <p>To create a task, fill in the fields below:</p>
@@ -71,6 +69,7 @@
                     <select
                         name="taskProject"
                         aria-label="Select your favorite cuisine..."
+                        id="projectSelect"
                     >
                         <option selected value="null">Select project...</option>
                     </select>
@@ -79,6 +78,29 @@
                             Cancel
                         </button>
                         <button id="comfirmBtn" type="submit">Confirm</button>
+                    </footer>
+                </article>
+            </form>
+        </dialog>
+
+        <dialog class="createProjectModal">
+            <form id="prj">
+                <article>
+                    <h2>Create Project</h2>
+                    <p>To create a project, fill in the fields below:</p>
+                    <input
+                        type="text"
+                        name="projectName"
+                        placeholder="Project name"
+                        aria-label="project name"
+                    />
+                    <footer>
+                        <button class="secondary" id="closeModalProject">
+                            Cancel
+                        </button>
+                        <button id="comfirmBtnProject" type="submit">
+                            Confirm
+                        </button>
                     </footer>
                 </article>
             </form>
