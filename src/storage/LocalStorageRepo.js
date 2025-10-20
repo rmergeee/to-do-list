@@ -1,8 +1,9 @@
 import Repository from "./Repository";
 
 export default class LocalStorageRepo extends Repository {
-    constructor(objToDo) {
+    constructor(objToDo, projects) {
         super();
+        this.projects = projects;
         this.objToDo = objToDo;
     }
 
@@ -29,5 +30,19 @@ export default class LocalStorageRepo extends Repository {
             t.id === id;
         });
         this.objToDo.taskStorage[taskIndex] = tsk;
+    }
+
+    loadProject() {
+        if (JSON.parse(localStorage.getItem("allProject")) === null) return;
+        this.projects.projectStorage = JSON.parse(
+            localStorage.getItem("allProject"),
+        );
+    }
+
+    saveProject() {
+        localStorage.setItem(
+            "allProject",
+            JSON.stringify(this.projects.projectStorage),
+        );
     }
 }

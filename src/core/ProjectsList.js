@@ -2,7 +2,7 @@ import Project from "./Project";
 
 export default class ProjectsList {
     constructor() {
-        this.projectStorage = [new Project("Example Project")];
+        this.projectStorage = [];
     }
 
     addProject(name) {
