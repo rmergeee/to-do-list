@@ -10,39 +10,29 @@
         <main class="container-fluid">
             <nav class="nav-menu">
                 <h1>To-do List</h1>
-                <button class="createTask outline" id="createBtn">
-                    Create task
-                </button>
+                <button class="createTask outline" id="createBtn">Create task</button>
                 <ul class="menuList">
                     <li id="allTasks">
-                        <a href="#"
-                            ><img
-                                src="./img/hamburger-menu-svgrepo-com.svg"
-                                alt="Tasks"
-                            />All tasks</a
-                        >
+                        <a href="#">
+                            <img src="./img/hamburger-menu-svgrepo-com.svg" alt="Tasks" />
+                            All tasks
+                        </a>
                     </li>
                     <li id="completedTasks">
-                        <a href="#"
-                            ><img
-                                src="./img/todo-done-svgrepo-com.svg"
-                                alt="Completed tasks"
-                            />Completed</a
-                        >
+                        <a href="#">
+                            <img src="./img/todo-done-svgrepo-com.svg" alt="Completed tasks" />
+                            Completed
+                        </a>
                     </li>
                     <li id="todoTasks">
-                        <a href="#"
-                            ><img
-                                src="./img/todo-svgrepo-com.svg"
-                                alt="To do tasks"
-                            />To do</a
-                        >
+                        <a href="#">
+                            <img src="./img/todo-svgrepo-com.svg" alt="To do tasks" />
+                            To do
+                        </a>
                     </li>
                 </ul>
                 <hr />
-                <button class="outline secondary" id="createProject">
-                    New project
-                </button>
+                <button class="outline secondary" id="createProject">New project</button>
                 <ul id="projectList"></ul>
             </nav>
             <div class="line"></div>
@@ -57,26 +47,21 @@
                         type="text"
                         name="taskName"
                         placeholder="Task name"
-                        aria-label="Task name"
-                    />
+                        aria-label="Task name" />
                     <textarea
                         name="taskDesc"
                         placeholder="Task Description"
                         aria-label="Task Description"
-                        autocomplete="off"
-                    ></textarea>
+                        autocomplete="off"></textarea>
                     <input type="date" name="date" aria-label="Date" />
                     <select
                         name="taskProject"
                         aria-label="Select your favorite cuisine..."
-                        id="projectSelect"
-                    >
+                        id="projectSelect">
                         <option selected value="null">Select project...</option>
                     </select>
                     <footer>
-                        <button class="secondary" id="closeModal">
-                            Cancel
-                        </button>
+                        <button class="secondary" id="closeModal">Cancel</button>
                         <button id="comfirmBtn" type="submit">Confirm</button>
                     </footer>
                 </article>
@@ -92,15 +77,10 @@
                         type="text"
                         name="projectName"
                         placeholder="Project name"
-                        aria-label="project name"
-                    />
+                        aria-label="project name" />
                     <footer>
-                        <button class="secondary" id="closeModalProject">
-                            Cancel
-                        </button>
-                        <button id="comfirmBtnProject" type="submit">
-                            Confirm
-                        </button>
+                        <button class="secondary" id="closeModalProject">Cancel</button>
+                        <button id="comfirmBtnProject" type="submit">Confirm</button>
                     </footer>
                 </article>
             </form>
