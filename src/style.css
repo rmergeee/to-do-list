@@ -59,7 +59,8 @@ dialog {
                 display: flex;
                 align-items: center;
                 gap: 1rem;
-                #comfirmBtn {
+                #comfirmBtn,
+                #comfirmBtnProject {
                     margin: 0;
                 }
             }
