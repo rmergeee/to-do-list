@@ -2,16 +2,16 @@ export default class Repository {
     loadTasks() {
         throw new Error("Not implemented");
     }
+
     saveTasks() {
         throw new Error("Not implemented");
     }
-    getTaskById() {
+
+    loadProject() {
         throw new Error("Not implemented");
     }
-    deleteTaskById() {
-        throw new Error("Not implemented");
-    }
-    setTaskById() {
+
+    saveProject() {
         throw new Error("Not implemented");
     }
 }

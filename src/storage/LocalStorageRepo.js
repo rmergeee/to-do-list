@@ -13,36 +13,15 @@ export default class LocalStorageRepo extends Repository {
     }
 
     saveTasks() {
-        localStorage.setItem(
-            "allTasks",
-            JSON.stringify(this.objToDo.taskStorage),
-        );
-    }
-
-    getTaskById() {
-        return this.objToDo.taskStorage.find((t) => {
-            t.id === id;
-        });
-    }
-
-    setTaskById(id, tsk) {
-        const taskIndex = this.objToDo.taskStorage.findIndex((t) => {
-            t.id === id;
-        });
-        this.objToDo.taskStorage[taskIndex] = tsk;
+        localStorage.setItem("allTasks", JSON.stringify(this.objToDo.taskStorage));
     }
 
     loadProject() {
         if (JSON.parse(localStorage.getItem("allProject")) === null) return;
-        this.projects.projectStorage = JSON.parse(
-            localStorage.getItem("allProject"),
-        );
+        this.projects.projectStorage = JSON.parse(localStorage.getItem("allProject"));
     }
 
     saveProject() {
-        localStorage.setItem(
-            "allProject",
-            JSON.stringify(this.projects.projectStorage),
-        );
+        localStorage.setItem("allProject", JSON.stringify(this.projects.projectStorage));
     }
 }
