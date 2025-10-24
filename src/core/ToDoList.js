@@ -40,8 +40,8 @@ export default class ToDoList {
         return this.taskStorage.filter((task) => task.isCompleted === isCompleted);
     }
 
-    getTasksByProject(project) {
-        return this.taskStorage.filter((task) => task.project === project);
+    getTasksByProject(projectId) {
+        return this.taskStorage.filter((task) => task.project === projectId);
     }
 
     getTasksByPriority(priority) {
