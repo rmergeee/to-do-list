@@ -38,8 +38,9 @@
             <div class="line"></div>
             <section class="content" id="task-container"></section>
         </main>
-        <dialog class="createTaskModal">
-            <form id="tsk">
+
+        <dialog class="taskModal">
+            <form id="taskForm">
                 <article>
                     <h2>Create Task</h2>
                     <p>To create a task, fill in the fields below:</p>
@@ -54,6 +55,12 @@
                         aria-label="Task Description"
                         autocomplete="off"></textarea>
                     <input type="date" name="date" aria-label="Date" />
+                    <select name="taskPriority" aria-label="Select priority" id="taskPriority">
+                        <option selected value="null" disabled>Select priority...</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
                     <select
                         name="taskProject"
                         aria-label="Select your favorite cuisine..."
@@ -61,15 +68,15 @@
                         <option selected value="null">Select project...</option>
                     </select>
                     <footer>
-                        <button class="secondary" id="closeModal">Cancel</button>
-                        <button id="comfirmBtn" type="submit">Confirm</button>
+                        <button class="secondary" id="closeModalTaskButton">Cancel</button>
+                        <button id="comfirmModalTaskButton" type="submit">Confirm</button>
                     </footer>
                 </article>
             </form>
         </dialog>
 
-        <dialog class="createProjectModal">
-            <form id="prj">
+        <dialog class="projectModal">
+            <form id="projectForm">
                 <article>
                     <h2>Create Project</h2>
                     <p>To create a project, fill in the fields below:</p>
@@ -79,11 +86,35 @@
                         placeholder="Project name"
                         aria-label="project name" />
                     <footer>
-                        <button class="secondary" id="closeModalProject">Cancel</button>
-                        <button id="comfirmBtnProject" type="submit">Confirm</button>
+                        <button class="secondary" id="closeModalProjectButton">Cancel</button>
+                        <button id="comfirmModalProjectButton" type="submit">Confirm</button>
                     </footer>
                 </article>
             </form>
+        </dialog>
+
+        <dialog class="taskDescModal">
+            <article>
+                <h2 class="taskTitle">This is my first Task</h2>
+                <p class="taskDescription">this is task description</p>
+                <p>
+                    Deadline:
+                    <span class="taskDeadline">21.03.2005</span>
+                </p>
+                <p>
+                    Priority:
+                    <span class="taskPriority">Low</span>
+                </p>
+                <p>
+                    Project:
+                    <span class="taskProject">Example</span>
+                </p>
+
+                <footer>
+                    <button class="secondary" id="editTaskButton">Edit</button>
+                    <button class="secondary" id="closeTaskDescButton">Close</button>
+                </footer>
+            </article>
         </dialog>
     </body>
 </html>
