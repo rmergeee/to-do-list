@@ -1,5 +1,7 @@
 import "./style.css";
-import App from "./ui/App";
+import Application from "./ui/Application";
 
-const app = new App();
-app.init();
+const app = new Application();
+app.renderAllTasks();
+app.renderAllProject();
+app.addEvent();
