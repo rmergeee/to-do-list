@@ -54,10 +54,10 @@ export default class Application {
 
     addEvent() {
         this.eventManager.taskModalEvent();
+        this.eventManager.projectModalEvent();
     }
 
     createTask(taskData) {
-        console.log("This is work!");
         this.todo.addTask(
             taskData.title,
             taskData.description,
@@ -67,5 +67,11 @@ export default class Application {
         );
         this.storage.saveTasks();
         this.renderAllTasks();
+    }
+
+    createProject(projectName) {
+        this.projects.addProject(projectName);
+        this.storage.saveProject();
+        this.renderAllProject();
     }
 }

@@ -40,4 +40,21 @@ export default class FormHandler {
         form.reset();
         modal.close();
     }
+
+    handleProjectSubmit(e, form, modal) {
+        e.preventDefault();
+        if (!this.validateForm(form)) {
+            return;
+        }
+        const formData = new FormData(form);
+        const projectName = formData.get("projectName");
+        if (this.app.currentProjectId) {
+            this.app.updateProject(this.app.currentProjectId, projectName);
+        } else {
+            this.app.createProject(projectName);
+        }
+
+        form.reset();
+        modal.close();
+    }
 }

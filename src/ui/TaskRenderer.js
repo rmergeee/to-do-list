@@ -38,13 +38,10 @@ export default class TaskRenderer {
         const projectFilter = document.createElement("li");
         projectFilter.innerHTML = `<a href="#">${project.name}</a>`;
         projectFilter.id = project.id;
-        document.getElementById("projectList").append(projectFilter);
 
         const projectOption = document.createElement("option");
         projectOption.value = project.id;
         projectOption.textContent = project.name;
-
-        document.getElementById("projectSelect").append(projectOption);
 
         return {
             projectFilter,
