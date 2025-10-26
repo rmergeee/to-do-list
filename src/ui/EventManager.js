@@ -42,4 +42,23 @@ export default class EventManager {
             this.app.formHandler.handleProjectSubmit(e, projectForm, projectModal);
         });
     }
+
+    filterEvents() {
+        const todoFilter = document.querySelector("#todoTasks");
+        const completedFiler = document.querySelector("#completedTasks");
+        const withoutFilter = document.querySelector("#allTasks");
+
+        todoFilter.addEventListener("click", (e) => {
+            e.preventDefault();
+            this.app.renderAllTasks(this.app.todo.getTasksByStatus(false));
+        });
+        completedFiler.addEventListener("click", (e) => {
+            e.preventDefault();
+            this.app.renderAllTasks(this.app.todo.getTasksByStatus(true));
+        });
+        withoutFilter.addEventListener("click", (e) => {
+            e.preventDefault();
+            this.app.renderAllTasks();
+        });
+    }
 }

@@ -21,9 +21,14 @@ export default class Application {
         this.storage.saveTasks();
     }
 
-    renderAllTasks() {
+    renderAllTasks(filter = null) {
         this.storage.loadTasks();
-        const taskArray = this.todo.taskStorage;
+        let taskArray;
+        if (filter === null) {
+            taskArray = this.todo.taskStorage;
+        } else {
+            taskArray = filter;
+        }
 
         if (taskArray.length === 0) return;
         this.taskContainer.innerHTML = "";
@@ -55,6 +60,7 @@ export default class Application {
     addEvent() {
         this.eventManager.taskModalEvent();
         this.eventManager.projectModalEvent();
+        this.eventManager.filterEvents();
     }
 
     createTask(taskData) {
