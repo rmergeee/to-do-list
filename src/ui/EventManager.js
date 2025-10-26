@@ -61,4 +61,16 @@ export default class EventManager {
             this.app.renderAllTasks();
         });
     }
+
+    projectFilterEvents() {
+        const projectContainer = document.querySelector("#projectList");
+        const projects = projectContainer.querySelectorAll("li");
+        projects.forEach((project) => {
+            project.addEventListener("click", (e) => {
+                e.preventDefault();
+                console.log(project.id);
+                this.app.renderAllTasks(this.app.todo.getTasksByProject(project.id));
+            });
+        });
+    }
 }

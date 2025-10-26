@@ -29,9 +29,8 @@ export default class Application {
         } else {
             taskArray = filter;
         }
-
-        if (taskArray.length === 0) return;
         this.taskContainer.innerHTML = "";
+        if (taskArray.length === 0) return;
 
         taskArray.forEach((task) => {
             const taskCard = this.render.renderTask(task, this.handleToggleTask.bind(this));
@@ -61,6 +60,7 @@ export default class Application {
         this.eventManager.taskModalEvent();
         this.eventManager.projectModalEvent();
         this.eventManager.filterEvents();
+        this.eventManager.projectFilterEvents();
     }
 
     createTask(taskData) {
