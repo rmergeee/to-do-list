@@ -44,7 +44,13 @@ export default class ToDoList {
         return this.taskStorage.filter((task) => task.project === projectId);
     }
 
-    getTasksByPriority(priority) {
-        return this.taskStorage.filter((task) => task.priority === priority);
+    getTasksByPriority(priority, tasks = null) {
+        const source = tasks ?? this.taskStorage;
+
+        if (priority === "all") {
+            return source;
+        }
+
+        return source.filter((task) => task.priority === priority);
     }
 }

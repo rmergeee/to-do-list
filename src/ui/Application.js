@@ -61,6 +61,7 @@ export default class Application {
         this.eventManager.projectModalEvent();
         this.eventManager.filterEvents();
         this.eventManager.projectFilterEvents();
+        this.eventManager.priorityFilter();
     }
 
     createTask(taskData) {

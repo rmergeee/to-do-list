@@ -50,14 +50,17 @@ export default class EventManager {
 
         todoFilter.addEventListener("click", (e) => {
             e.preventDefault();
+            this.app.render.renderCurrentFilter("To do", "todoTasks");
             this.app.renderAllTasks(this.app.todo.getTasksByStatus(false));
         });
         completedFiler.addEventListener("click", (e) => {
             e.preventDefault();
+            this.app.render.renderCurrentFilter("Completed tasks", "completedTasks");
             this.app.renderAllTasks(this.app.todo.getTasksByStatus(true));
         });
         withoutFilter.addEventListener("click", (e) => {
             e.preventDefault();
+            this.app.render.renderCurrentFilter("All tasks", "allTask");
             this.app.renderAllTasks();
         });
     }
@@ -68,8 +71,53 @@ export default class EventManager {
         projects.forEach((project) => {
             project.addEventListener("click", (e) => {
                 e.preventDefault();
-                console.log(project.id);
+                this.app.render.renderCurrentFilter(project.textContent, project.id);
                 this.app.renderAllTasks(this.app.todo.getTasksByProject(project.id));
+            });
+        });
+    }
+
+    priorityFilter() {
+        const currentProject = document.querySelector(".currentProject");
+        const priorityButtons = document.querySelectorAll(".priority");
+
+        priorityButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const priority = button.id;
+                let filteredTasks = [];
+
+                switch (currentProject.id) {
+                    case "allTask":
+                        filteredTasks = this.app.todo.getTasksByPriority(priority);
+                        break;
+
+                    case "todoTasks":
+                        filteredTasks = this.app.todo.getTasksByPriority(
+                            priority,
+                            this.app.todo.getTasksByStatus(false),
+                        );
+                        break;
+
+                    case "completedTasks":
+                        filteredTasks = this.app.todo.getTasksByPriority(
+                            priority,
+                            this.app.todo.getTasksByStatus(true),
+                        );
+                        break;
+
+                    default:
+                        const projectTasks = this.app.todo.getTasksByProject(currentProject.id);
+                        filteredTasks = this.app.todo.getTasksByPriority(priority, projectTasks);
+                        break;
+                }
+
+                this.app.renderAllTasks(filteredTasks);
+
+                let baseTitle = currentProject.textContent.replace(/\s*\(.*priority\)/, "");
+                this.app.render.renderCurrentFilter(
+                    `${baseTitle} (${priority} priority)`,
+                    currentProject.id,
+                );
             });
         });
     }

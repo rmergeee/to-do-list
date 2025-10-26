@@ -48,4 +48,10 @@ export default class TaskRenderer {
             projectOption,
         };
     }
+
+    renderCurrentFilter(filterName, filterId) {
+        const currentProject = document.querySelector(".currentProject");
+        currentProject.id = filterId;
+        currentProject.textContent = filterName;
+    }
 }

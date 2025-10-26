@@ -35,7 +35,17 @@
                 <button class="outline secondary" id="createProjectButton">New project</button>
                 <ul id="projectList"></ul>
             </nav>
-            <section class="content" id="task-container"></section>
+            <section class="content">
+                <section id="priority-container">
+                    <h3 id="allTask" class="currentProject">All tasks</h3>
+                    <h4>Priority</h4>
+                    <button class="outline secondary priority" id="all">All</button>
+                    <button class="outline secondary priority" id="low">Low</button>
+                    <button class="outline secondary priority" id="medium">Medium</button>
+                    <button class="outline secondary priority" id="high">High</button>
+                </section>
+                <section id="task-container"></section>
+            </section>
         </main>
 
         <dialog class="taskModal">
