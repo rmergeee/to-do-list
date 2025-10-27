@@ -121,4 +121,10 @@ export default class EventManager {
             });
         });
     }
+
+    expandTaskEvent(task, taskCard) {
+        const taskDescModal = document.querySelector(".taskDescModal");
+        const editTaskButton = document.getElementById("editTaskButton");
+        const closeTaskDescButton = document.getElementById("closeTaskDescButton");
+    }
 }

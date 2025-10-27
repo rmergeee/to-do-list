@@ -54,4 +54,18 @@ export default class TaskRenderer {
         currentProject.id = filterId;
         currentProject.textContent = filterName;
     }
+
+    renderTaskDetail(task) {
+        const taskTitle = document.querySelector(".taskTitle");
+        const taskDescription = document.querySelector(".taskDescription");
+        const taskDeadline = document.querySelector(".taskDeadline");
+        const taskPriority = document.querySelector(".taskPriority");
+        const taskProject = document.querySelector(".taskProject");
+
+        taskTitle.textContent = task.title;
+        taskDescription.textContent = task.description;
+        taskDeadline.textContent = task.deadline;
+        taskPriority.textContent = task.priority;
+        taskProject.textContent = task.project;
+    }
 }
