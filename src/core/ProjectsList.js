@@ -9,6 +9,10 @@ export default class ProjectsList {
         this.projectStorage.push(new Project(name));
     }
 
+    getProject(id) {
+        return this.projectStorage.find((project) => project.id === id);
+    }
+
     deleteProject(projectId) {
         const projectIndex = this.projectStorage.findIndex((project) => project.id === projectId);
         if (projectIndex !== -1) {

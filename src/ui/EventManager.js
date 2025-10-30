@@ -122,9 +122,35 @@ export default class EventManager {
         });
     }
 
-    expandTaskEvent(task, taskCard) {
+    expandTaskEvent(task) {
         const taskDescModal = document.querySelector(".taskDescModal");
         const editTaskButton = document.getElementById("editTaskButton");
         const closeTaskDescButton = document.getElementById("closeTaskDescButton");
+
+        const closeModalTaskButton = document.getElementById("closeModalTaskButton");
+        const taskModal = document.querySelector(".taskModal");
+        const taskForm = document.getElementById("taskForm");
+
+        const formTitle = document.querySelector('input[name="taskName"]');
+        const formDesc = document.querySelector('textarea[name="taskDesc"]');
+        const formDate = document.querySelector('input[name="date"]');
+        const formPriority = document.querySelector('select[name="taskPriority"]');
+        const formProject = document.querySelector('select[name="taskProject"]');
+
+        formTitle.value = task.title;
+        formDesc.value = task.description;
+        formDate.value = task.deadline;
+        formPriority.value = task.priority;
+        formProject.value = task.project;
+
+        taskDescModal.showModal();
+        closeTaskDescButton.addEventListener("click", () => {
+            taskDescModal.close();
+        });
+
+        editTaskButton.addEventListener("click", () => {
+            taskDescModal.close();
+            taskModal.showModal();
+        });
     }
 }

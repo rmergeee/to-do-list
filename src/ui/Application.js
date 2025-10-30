@@ -7,13 +7,14 @@ import EventManager from "./EventManager";
 
 export default class Application {
     constructor() {
-        this.render = new TaskRenderer();
+        this.render = new TaskRenderer(this);
         this.todo = new ToDoList();
         this.projects = new ProjectsList();
         this.storage = new LocalStorageRepo(this.todo, this.projects);
         this.taskContainer = document.getElementById("task-container");
         this.formHandler = new FormHandler(this);
         this.eventManager = new EventManager(this);
+        this.currentTaskId = undefined;
     }
 
     handleToggleTask(taskId) {
@@ -33,7 +34,12 @@ export default class Application {
         if (taskArray.length === 0) return;
 
         taskArray.forEach((task) => {
-            const taskCard = this.render.renderTask(task, this.handleToggleTask.bind(this));
+            const taskCard = this.render.renderTask(
+                task,
+                this.handleToggleTask.bind(this),
+                this.eventManager.expandTaskEvent,
+                this.projects,
+            );
             this.taskContainer.append(taskCard);
         });
     }
@@ -80,5 +86,11 @@ export default class Application {
         this.projects.addProject(projectName);
         this.storage.saveProject();
         this.renderAllProject();
+    }
+
+    updateTask(currentTaskId, taskData) {
+        this.todo.updateTask(currentTaskId, taskData);
+        this.storage.saveTasks();
+        this.renderAllTasks();
     }
 }

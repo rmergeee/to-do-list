@@ -1,5 +1,9 @@
 export default class TaskRenderer {
-    renderTask(task, onToggle) {
+    constructor(app) {
+        this.app = app;
+    }
+
+    renderTask(task, onToggle, onClick, projects) {
         const taskCard = document.createElement("article");
         taskCard.className = "task";
 
@@ -26,6 +30,12 @@ export default class TaskRenderer {
         label.appendChild(taskTitle);
         taskTextContent.append(taskDescription, taskDeadline);
         taskCard.append(taskCheckbox, label, taskTextContent);
+
+        taskTitle.addEventListener("click", () => {
+            onClick(task);
+            this.renderTaskDetail(task, projects);
+            this.app.currentTaskId = task.id;
+        });
 
         taskCheckbox.addEventListener("change", () => {
             onToggle(task.id);
@@ -55,17 +65,19 @@ export default class TaskRenderer {
         currentProject.textContent = filterName;
     }
 
-    renderTaskDetail(task) {
+    renderTaskDetail(task, projects) {
         const taskTitle = document.querySelector(".taskTitle");
         const taskDescription = document.querySelector(".taskDescription");
         const taskDeadline = document.querySelector(".taskDeadline");
         const taskPriority = document.querySelector(".taskPriority");
         const taskProject = document.querySelector(".taskProject");
 
+        const project = projects.getProject(task.project);
+
         taskTitle.textContent = task.title;
         taskDescription.textContent = task.description;
         taskDeadline.textContent = task.deadline;
         taskPriority.textContent = task.priority;
-        taskProject.textContent = task.project;
+        taskProject.textContent = project.name;
     }
 }

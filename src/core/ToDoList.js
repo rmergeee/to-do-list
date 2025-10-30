@@ -16,6 +16,7 @@ export default class ToDoList {
             task.description = updates.description ?? task.description;
             task.deadline = updates.deadline ?? task.deadline;
             task.priority = updates.priority ?? task.priority;
+            task.project = updates.project ?? task.project;
         }
         return null;
     }
